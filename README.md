@@ -1,7 +1,7 @@
 MantisBT-Lightbox
 =================
 
-A [MantisBT](http://www.mantisbt.org/) plugin to send open attachments using [Lightbox](http://lokeshdhakar.com/projects/lightbox2/).
+A [MantisBT](http://www.mantisbt.org/) plugin to open attachments using [Lightbox](http://lokeshdhakar.com/projects/lightbox2/).
 
 
 # Setup
