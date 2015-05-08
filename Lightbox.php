@@ -33,11 +33,12 @@ class LightboxPlugin extends MantisPlugin {
 
     function hooks() {
         return array(
-            'EVENT_VIEW_BUG_DETAILS' => 'add_lightbox',
+            'EVENT_LAYOUT_RESOURCES' => 'add_lightbox',
         );
     }
 
     function add_lightbox($event, $bug_id) {
+        if ($_SERVER['PHP_SELF'] !== '/view.php') return;
 ?>
 <script src="/plugins/Lightbox/lightbox/js/jquery-1.7.2.min.js"></script>
 <script src="/plugins/Lightbox/lightbox/js/lightbox.js"></script>
