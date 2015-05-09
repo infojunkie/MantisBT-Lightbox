@@ -26,6 +26,10 @@ class LightboxPlugin extends MantisPlugin {
         $this->requires = array(
             'MantisCore' => '>= 1.2.0',
         );
+        // don't need jQuery in Mantis >= 1.3.0
+        if( version_compare( MANTIS_VERSION, '1.3', '<' ) === true ) {
+            $this->requires['jQuery'] = '>= 1.11.0';
+        }
         $this->author = 'Karim Ratib';
         $this->contact = 'karim@meedan.com';
         $this->url = 'http://meedan.com';
@@ -40,8 +44,8 @@ class LightboxPlugin extends MantisPlugin {
     function add_lightbox($event, $bug_id) {
         if ($_SERVER['PHP_SELF'] !== '/view.php') return;
 ?>
-<script src="/plugins/Lightbox/lightbox/js/jquery-1.7.2.min.js"></script>
-<script src="/plugins/Lightbox/lightbox/js/lightbox.js"></script>
+<script src="/plugins/jQuery/files/jquery-min.js"></script>
+<script src="/plugins/Lightbox/lightbox/js/lightbox.min.js"></script>
 <script src="/plugins/Lightbox/Lightbox.js"></script>
 <link href="/plugins/Lightbox/lightbox/css/lightbox.css" rel="stylesheet" />
 <?php
