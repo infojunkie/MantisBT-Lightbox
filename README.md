@@ -5,6 +5,7 @@ A [MantisBT](http://www.mantisbt.org/) plugin to open attachments using [Lightbo
 
 
 # Setup
+* Install [jQuery plugin](https://github.com/mantisbt-plugins/jquery).
 * Extract this repo to your *Mantis folder/plugins/Lightbox*.
 * Enable the plugin in Mantis.
 * Enjoy!
