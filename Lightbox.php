@@ -22,7 +22,7 @@ class LightboxPlugin extends MantisPlugin {
     function register() {
         $this->name = plugin_lang_get( 'title' );
         $this->description = plugin_lang_get( 'description' );
-        $this->version = '0.1';
+        $this->version = '0.1.1';
         $this->requires = array(
             'MantisCore' => '>= 1.2.0',
         );
@@ -30,9 +30,9 @@ class LightboxPlugin extends MantisPlugin {
         if( version_compare( MANTIS_VERSION, '1.3', '<' ) === true ) {
             $this->requires['jQuery'] = '>= 1.11.0';
         }
-        $this->author = 'Karim Ratib';
-        $this->contact = 'karim@meedan.com';
-        $this->url = 'http://meedan.com';
+        $this->author = 'Karim Ratib and Kaue Santoja';
+        $this->contact = 'kaue@santoja.com.br';
+        $this->url = 'https://github.com/santoja/Lightbox';
     }
 
     function hooks() {
@@ -41,13 +41,12 @@ class LightboxPlugin extends MantisPlugin {
         );
     }
 
-    function add_lightbox($event, $bug_id) {
-        if ($_SERVER['PHP_SELF'] !== '/view.php') return;
-?>
-<script src="/plugins/jQuery/files/jquery-min.js"></script>
-<script src="/plugins/Lightbox/lightbox/js/lightbox.min.js"></script>
-<script src="/plugins/Lightbox/Lightbox.js"></script>
-<link href="/plugins/Lightbox/lightbox/css/lightbox.css" rel="stylesheet" />
-<?php
+    function add_lightbox($event) {
+	$currentUrl = explode('/',$_SERVER['PHP_SELF']);
+        if (end($currentUrl) !== 'view.php') return;
+		return '<link href="'.plugin_file('lightbox/css/lightbox.css').'" rel="stylesheet">
+			<script type="text/javascript"> var lightboxlocation = "'.plugin_file('lightbox/js/lightbox-min.js').'";</script>
+			<script type="text/javascript" src="'.plugin_file('Lightbox.js').'"></script>';
+
     }
 }
