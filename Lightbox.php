@@ -1,7 +1,7 @@
 <?php
 /**
  * Lightbox Integration
- * Copyright (C) 2015 Karim Ratib (karim.ratib@gmail.com)
+ * Copyright (C) 2015 Karim Ratib (karim.ratib@gmail.com) and Kaue Santoja (shinjiiraki@gmail.com)
  *
  * Lightbox Integration is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License 2
