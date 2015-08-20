@@ -24,7 +24,7 @@ class LightboxPlugin extends MantisPlugin {
         $this->description = plugin_lang_get( 'description' );
         $this->version = '0.1.1';
         $this->requires = array(
-            'MantisCore' => '>= 1.2, 1.3',
+            'MantisCore' => '1.2, 1.3',
         );
         // don't need jQuery in Mantis >= 1.3.0
         if( version_compare( MANTIS_VERSION, '1.3', '<' ) === true ) {
