@@ -20,3 +20,6 @@
 
 $s_plugin_Lightbox_title = 'Lightbox Integration';
 $s_plugin_Lightbox_description = 'Adds Lightbox integration to Mantis.';
+$s_plugin_Lightbox_config = 'Configuration';
+$s_plugin_Lightbox_on_preview = 'Show Lightbox on preview click';
+$s_plugin_Lightbox_on_link = 'Show Lightbox when click on image link';
