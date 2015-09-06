@@ -23,7 +23,7 @@ class LightboxPlugin extends MantisPlugin {
     function register() {
         $this->name = plugin_lang_get('title');
         $this->description = plugin_lang_get('description');
-        $this->version = '0.2';
+        $this->version = '0.2.1';
         $this->page = 'config';
         $this->requires = array(
             'MantisCore' => '>=1.2, <1.4',
@@ -44,6 +44,7 @@ class LightboxPlugin extends MantisPlugin {
         return array(
             'display_on_img_preview' => ON,
             'display_on_img_link' => OFF,
+            'img_extensions' => 'jpg,jpeg,png,gif'
         );
     }
 
@@ -60,7 +61,8 @@ class LightboxPlugin extends MantisPlugin {
         return '        <script type="text/javascript">'.
                         'var lightbox_display_on_img_preview = '.plugin_config_get('display_on_img_preview').';'.
                         'var lightbox_display_on_img_link = '.plugin_config_get('display_on_img_link').';'.
-                        ' var lightboxlocation = "' . plugin_file('lightbox/js/lightbox-min.js') . '";'.
+                        'var lightboxlocation = "' . plugin_file('lightbox/js/lightbox-min.js') . '";'.
+                        'var lightboxExtensions = "' . plugin_config_get('img_extensions') . '";'.
                         '</script>'.
                         '<link href="' . plugin_file('lightbox/css/lightbox.css') . '" rel="stylesheet">'.
 			'<script type="text/javascript" src="' . plugin_file('Lightbox.js') . '"></script>';

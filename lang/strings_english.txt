@@ -2,6 +2,7 @@
 /**
  * Lightbox Integration
  * Copyright (C) 2015 Karim Ratib (karim.ratib@gmail.com)
+ * New Version by Kaue Santoja
  *
  * Lightbox Integration is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License 2
@@ -23,3 +24,4 @@ $s_plugin_Lightbox_description = 'Adds Lightbox integration to Mantis.';
 $s_plugin_Lightbox_config = 'Configuration';
 $s_plugin_Lightbox_on_preview = 'Show Lightbox on preview click';
 $s_plugin_Lightbox_on_link = 'Show Lightbox when click on image link';
+$s_plugin_Lightbox_img_extensions = 'Create Lightbox on links to this extensions (apply only to links). Use comma to separate.';

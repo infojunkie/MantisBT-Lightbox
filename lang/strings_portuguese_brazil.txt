@@ -24,3 +24,4 @@ $s_plugin_Lightbox_description = 'Adiciona Lightbox ao Mantis.';
 $s_plugin_Lightbox_config = 'Configuração';
 $s_plugin_Lightbox_on_preview = 'Exibir Lightbox ao clicar na miniatura da imagem';
 $s_plugin_Lightbox_on_link = 'Exibir Lightbox ao clicar no link para a imagem';
+$s_plugin_Lightbox_img_extensions = 'Cria o Lightbox apenas nos links para essas extensões (aplicavel apenas para links). Separe por virgura.';

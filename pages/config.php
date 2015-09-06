@@ -52,6 +52,17 @@ print_manage_menu();
                 <label><input type="checkbox" name="display_on_img_link" value="1" <?php echo( ON == plugin_config_get('display_on_img_link') ) ? 'checked="checked" ' : '' ?>/></label>
             </td>
         </tr>
+        
+        <tr <?php echo helper_alternate_class() ?>>
+            <td class="category">
+                <?php echo plugin_lang_get('img_extensions') ?>
+            </td>
+            <td class="center">
+                <label><input type="text" name="img_extensions" value="<?php echo plugin_config_get('img_extensions');?>"/></label>
+            </td>
+        </tr>
+        
+        
 
         <tr>
             <td class="center" colspan="2">

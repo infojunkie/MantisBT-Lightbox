@@ -4,7 +4,21 @@
             $('#attachments').parent().parent().find('a').find('img').parent().attr('rel', 'lightbox');
         }
         if(lightbox_display_on_img_link){
-            $('#attachments').parent().parent().find('.small').prev().prev().prev().attr('rel', 'lightbox');
+            var lightBoxObjlink = $('#attachments').parent().parent().find('.small').prev().prev().prev();
+            var lightBoxLabel;
+            var lightBoxpieces;
+            var lightBoxExtension;
+            lightboxExtensions = lightboxExtensions.replace(/[\. ]+/g, "").split(',');
+            lightBoxObjlink.each(function(){
+               lightBoxLabel = $(this).html();
+               lightBoxpieces = lightBoxLabel.split('.');
+               lightBoxExtension = lightBoxpieces[lightBoxpieces.length-1];
+               if(lightboxExtensions.indexOf(lightBoxExtension) > -1){
+                   $(this).attr('rel', 'lightbox');
+               }
+            });
+             
+            
         }
         $.getScript(lightboxlocation);
     });

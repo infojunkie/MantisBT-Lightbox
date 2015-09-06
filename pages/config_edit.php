@@ -25,6 +25,7 @@ access_ensure_global_level( config_get( 'manage_plugin_threshold' ) );
 
 $f_display_on_img_preview = gpc_get_int( 'display_on_img_preview', OFF );
 $f_display_on_img_link= gpc_get_int( 'display_on_img_link', OFF );
+$f_img_extensions= gpc_get_string( 'img_extensions', 'jpg,jpeg,png,gif' );
 
 if ( plugin_config_get( 'display_on_img_preview' ) != $f_display_on_img_preview ) {
 	plugin_config_set( 'display_on_img_preview', $f_display_on_img_preview );
@@ -32,6 +33,10 @@ if ( plugin_config_get( 'display_on_img_preview' ) != $f_display_on_img_preview 
 
 if ( plugin_config_get( 'display_on_img_link' ) != $f_display_on_img_link ) {
 	plugin_config_set( 'display_on_img_link', $f_display_on_img_link );
+}
+
+if ( plugin_config_get( 'img_extensions' ) != $f_img_extensions ) {
+	plugin_config_set( 'img_extensions', $f_img_extensions );
 }
 
 
