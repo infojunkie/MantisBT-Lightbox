@@ -19,9 +19,9 @@
  * or see http://www.gnu.org/licenses/.
  */
 
-$s_plugin_Lightbox_title = 'Lightbox Integration';
-$s_plugin_Lightbox_description = 'Adds Lightbox integration to Mantis.';
-$s_plugin_Lightbox_config = 'Configuration';
-$s_plugin_Lightbox_on_preview = 'Show Lightbox on preview click';
-$s_plugin_Lightbox_on_link = 'Show Lightbox when click on image link';
-$s_plugin_Lightbox_img_extensions = 'Create Lightbox on links to this extensions (apply only to links). Use comma to separate.';
+$s_plugin_Lightbox_title = 'Lightbox';
+$s_plugin_Lightbox_description = 'Adiciona Lightbox ao Mantis.';
+$s_plugin_Lightbox_config = 'Configuração';
+$s_plugin_Lightbox_on_preview = 'Exibir Lightbox ao clicar na miniatura da imagem';
+$s_plugin_Lightbox_on_link = 'Exibir Lightbox ao clicar no link para a imagem';
+$s_plugin_Lightbox_img_extensions = 'Cria o Lightbox apenas nos links para essas extensões (aplicavel apenas para links). Separe por virgura.';
