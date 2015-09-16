@@ -23,7 +23,7 @@ class LightboxPlugin extends MantisPlugin {
     function register() {
         $this->name = plugin_lang_get('title');
         $this->description = plugin_lang_get('description');
-        $this->version = '0.2.1';
+        $this->version = '1.0';
         $this->page = 'config';
         $this->requires = array(
             'MantisCore' => '>=1.2, <1.4',
