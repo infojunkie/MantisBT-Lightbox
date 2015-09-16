@@ -9,7 +9,7 @@ The plugin requires [Mantis](http://www.mantisbt.org/) version 1.2.0 or higher
 
 # Setup
 * Install [jQuery plugin](https://github.com/mantisbt-plugins/jquery). You don't need this on MantisBT 1.3 or above.
-* Install [this plugin] (https://github.com/infojunkie/MantisBT-Lightbox). (Just download, unzip and copy to the mantis plugin folder.)
+* Install [this plugin] (https://github.com/infojunkie/MantisBT-Lightbox/releases). (Just download, unzip and copy to the mantis plugin folder.)
 * Enjoy!
 
 ## Support
