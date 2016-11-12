@@ -42,7 +42,7 @@ class LightboxPlugin extends MantisPlugin {
     function config() {
         return array(
             'display_on_img_preview' => ON,
-            'display_on_img_link' => OFF,
+            'display_on_img_link' => ON,
         );
     }
 
