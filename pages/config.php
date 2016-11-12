@@ -1,7 +1,7 @@
 <?php
 /**
  * Lightbox Integration
- * Copyright (C) 2015 Karim Ratib (karim.ratib@gmail.com) and Kaue Santoja (shinjiiraki@gmail.com)
+ * Copyright (C) Karim Ratib (karim@meedan.com)
  *
  * Lightbox Integration is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License 2
@@ -17,61 +17,30 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
  * or see http://www.gnu.org/licenses/.
  */
-auth_reauthenticate();
-access_ensure_global_level(config_get('manage_plugin_threshold'));
 
-html_page_top(plugin_lang_get('title') . ' config');
+form_security_validate( 'plugin_Lightbox_config' );
+access_ensure_global_level( config_get( 'manage_plugin_threshold' ) );
 
-print_manage_menu();
-?>
+/**
+* Sets plugin config option if value is different from current/default
+* @param string $p_name  option name
+* @param string $p_value value to set
+* @return void
+*/
+function config_set_if_needed( $p_name, $p_value ) {
+	if ( $p_value != plugin_config_get( $p_name ) ) {
+		plugin_config_set( $p_name, $p_value );
+	}
+}
 
-<br />
-<form action="<?php echo plugin_page('config_edit') ?>" method="post">
-    <?php echo form_security_field('plugin_lightbox_config_edit') ?>
-    <table align="center" class="width50" cellspacing="1">
-        <tr>
-            <td class="form-title" colspan="3">
-                <?php echo plugin_lang_get('title') . ': ' . plugin_lang_get('config') ?>
-            </td>
-        </tr>
+$t_redirect_url = plugin_page( 'config_page', true );
+layout_page_header( null, $t_redirect_url );
+layout_page_begin();
 
-        <tr <?php echo helper_alternate_class() ?>>
-            <td class="category">
-                <?php echo plugin_lang_get('on_preview') ?>
-            </td>
-            <td class="center">
-                <label><input type="checkbox" name="display_on_img_preview" value="1" <?php echo( ON == plugin_config_get('display_on_img_preview') ) ? 'checked="checked" ' : '' ?>/></label>
-            </td>
-        </tr>
+config_set_if_needed( 'display_on_img_preview' , gpc_get_int( 'display_on_img_preview', OFF ) );
+config_set_if_needed( 'display_on_img_link' , gpc_get_int( 'display_on_img_link', OFF ) );
 
-        <tr <?php echo helper_alternate_class() ?>>
-            <td class="category">
-                <?php echo plugin_lang_get('on_link') ?>
-            </td>
-            <td class="center">
-                <label><input type="checkbox" name="display_on_img_link" value="1" <?php echo( ON == plugin_config_get('display_on_img_link') ) ? 'checked="checked" ' : '' ?>/></label>
-            </td>
-        </tr>
-        
-        <tr <?php echo helper_alternate_class() ?>>
-            <td class="category">
-                <?php echo plugin_lang_get('img_extensions') ?>
-            </td>
-            <td class="center">
-                <label><input type="text" name="img_extensions" value="<?php echo plugin_config_get('img_extensions');?>"/></label>
-            </td>
-        </tr>
-        
-        
+form_security_purge( 'plugin_Lightbox_config' );
 
-        <tr>
-            <td class="center" colspan="2">
-                <input type="submit" class="button" value="<?php echo lang_get('change_configuration') ?>" />
-            </td>
-        </tr>
-
-    </table>
-</form>
-
-<?php
-html_page_bottom();
+html_operation_successful( $t_redirect_url );
+layout_page_end();

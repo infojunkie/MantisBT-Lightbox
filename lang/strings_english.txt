@@ -25,3 +25,4 @@ $s_plugin_Lightbox_config = 'Configuration';
 $s_plugin_Lightbox_on_preview = 'Show Lightbox on preview click';
 $s_plugin_Lightbox_on_link = 'Show Lightbox when click on image link';
 $s_plugin_Lightbox_img_extensions = 'Create Lightbox on links to this extensions (apply only to links). Use comma to separate.';
+$s_plugin_Lightbox_action_update = 'Update';

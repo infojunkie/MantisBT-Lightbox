@@ -1,8 +1,10 @@
 <?php
 
+require_api( 'crypto_api.php' );
+
 /**
  * Lightbox Integration
- * Copyright (C) 2015 Karim Ratib (karim.ratib@gmail.com) and Kaue Santoja (shinjiiraki@gmail.com)
+ * Copyright (C) Karim Ratib (karim@meedan.com)
  *
  * Lightbox Integration is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License 2
@@ -24,17 +26,14 @@ class LightboxPlugin extends MantisPlugin {
         $this->name = plugin_lang_get('title');
         $this->description = plugin_lang_get('description');
         $this->version = '1.0';
-        $this->page = 'config';
+        $this->page = 'config_page';
         $this->requires = array(
-            'MantisCore' => '>=1.2, <1.4',
+            'MantisCore' => '2.0.0',
         );
-        // don't need jQuery in Mantis >= 1.3.0
-        if (version_compare(MANTIS_VERSION, '1.3', '<') === true) {
-            $this->requires['jQuery'] = '>= 1.11.0';
-        }
-        $this->author = 'Karim Ratib and Kaue Santoja';
-        $this->contact = 'kaue@santoja.com.br';
-        $this->url = 'https://github.com/santoja/Lightbox';
+        $this->author = 'Karim Ratib';
+        $this->contact = 'karim@meedan.com';
+        $this->url = 'http://code.meedan.com';
+        $this->nonce = crypto_generate_uri_safe_nonce( 16 );
     }
 
     /**
@@ -44,28 +43,63 @@ class LightboxPlugin extends MantisPlugin {
         return array(
             'display_on_img_preview' => ON,
             'display_on_img_link' => OFF,
-            'img_extensions' => 'jpg,jpeg,png,gif'
         );
     }
 
     function hooks() {
         return array(
             'EVENT_LAYOUT_RESOURCES' => 'add_lightbox',
+            'EVENT_CORE_HEADERS' => 'csp_headers',
         );
     }
 
     function add_lightbox($event) {
         $currentUrl = explode('/', $_SERVER['PHP_SELF']);
         if (end($currentUrl) !== 'view.php') return;
-        
-        return '        <script type="text/javascript">'.
-                        'var lightbox_display_on_img_preview = '.plugin_config_get('display_on_img_preview').';'.
-                        'var lightbox_display_on_img_link = '.plugin_config_get('display_on_img_link').';'.
-                        'var lightboxlocation = "' . plugin_file('lightbox/js/lightbox-min.js') . '";'.
-                        'var lightboxExtensions = "' . plugin_config_get('img_extensions') . '";'.
-                        '</script>'.
-                        '<link href="' . plugin_file('lightbox/css/lightbox.css') . '" rel="stylesheet">'.
-			'<script type="text/javascript" src="' . plugin_file('Lightbox.js') . '"></script>';
+
+        $lightbox_display_on_img_preview = plugin_config_get('display_on_img_preview');
+        $lightbox_display_on_img_link = plugin_config_get('display_on_img_link');
+        $lightboxJs = plugin_file('lightbox/js/lightbox.min.js');
+        $lightboxCss = plugin_file('lightbox/css/lightbox.min.css');
+        $lightboxMantis = plugin_file('Lightbox.js');
+        $images = [
+          'prev' => plugin_file('lightbox/img/prev.png'),
+          'next' => plugin_file('lightbox/img/next.png'),
+          'close' => plugin_file('lightbox/img/close.png'),
+          'loading' => plugin_file('lightbox/img/loading.gif'),
+        ];
+
+        return <<<LIGHTBOX
+<script type="text/javascript" nonce={$this->nonce}>
+var lightbox_display_on_img_preview = {$lightbox_display_on_img_preview};
+var lightbox_display_on_img_link = {$lightbox_display_on_img_link};
+var lightboxExtensions = "{$lightboxExtensions}";
+</script>
+<link href="{$lightboxCss}" rel="stylesheet">
+<script type="text/javascript" src="{$lightboxJs}"></script>
+<script type="text/javascript" src="{$lightboxMantis}"></script>
+<style>
+.lb-nav a.lb-prev {
+  background-image: url({$images['prev']});
+}
+.lb-nav a.lb-next {
+  background-image: url({$images['next']});
+}
+.lb-data .lb-close {
+  background-image: url({$images['close']});
+}
+.lb-cancel {
+  background-image: url({$images['loading']});
+}
+</style>
+LIGHTBOX;
     }
 
+    /**
+  	 * Register gravatar url as an img-src for CSP header
+  	 */
+  	function csp_headers() {
+  	   http_csp_add( 'script-src', "'nonce-{$this->nonce}'" );
+       http_csp_add( 'img-src', "data:" );
+  	}
 }
