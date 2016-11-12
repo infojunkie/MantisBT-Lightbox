@@ -96,10 +96,10 @@ LIGHTBOX;
     }
 
     /**
-  	 * Register gravatar url as an img-src for CSP header
-  	 */
-  	function csp_headers() {
-  	   http_csp_add( 'script-src', "'nonce-{$this->nonce}'" );
+     * Add Content Security Policy headers for our script.
+     */
+    function csp_headers() {
+       http_csp_add( 'script-src', "'nonce-{$this->nonce}'" );
        http_csp_add( 'img-src', "data:" );
-  	}
+    }
 }
