@@ -73,7 +73,6 @@ class LightboxPlugin extends MantisPlugin {
 <script type="text/javascript" nonce={$this->nonce}>
 var lightbox_display_on_img_preview = {$lightbox_display_on_img_preview};
 var lightbox_display_on_img_link = {$lightbox_display_on_img_link};
-var lightboxExtensions = "{$lightboxExtensions}";
 </script>
 <link href="{$lightboxCss}" rel="stylesheet">
 <script type="text/javascript" src="{$lightboxJs}"></script>
